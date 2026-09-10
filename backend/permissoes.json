@@ -1,0 +1,21 @@
+{
+  "usuarios": {
+    "v.santos": {
+      "telas": [
+        "rastreio_amostra",
+        "rankprod",
+        "retorno_amostras",
+        "relatorio",
+        "analytics",
+        "admin"
+      ],
+      "supervisao": [
+        "V00",
+        "S50",
+        "S55",
+        "S00"
+      ]
+    }
+  },
+  "versao": 1787066894
+}

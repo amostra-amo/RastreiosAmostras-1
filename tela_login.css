@@ -1,0 +1,430 @@
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+
+:root {
+    --cor-fundo: #aed0fcdc;
+    --azul-card: #5c88bd;
+    --azul-principal: #1976d2;
+    --azul-escuro: #0d47a1;
+    --azul-neon: #3a86e9;
+    --bordo: #9e3d64;
+    --texto: #ffffff;
+    --texto-suave: #dce7f2;
+    --texto-escuro: #dce7f2;
+    --linha: rgba(255, 255, 255, 0.24);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--cor-fundo);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+body:not(.tema-quatrok):not(.tema-luara):not(.tema-direto) {
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255,255,255,.38), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(25,118,210,.18), transparent 34%),
+        #aed0fcdc;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+body::before {
+    top: -150px;
+    left: -90px;
+    box-shadow: 0 0 0 22px rgba(58,134,233,.08), 0 0 0 44px rgba(58,134,233,.05);
+}
+
+body::after {
+    right: -120px;
+    bottom: -155px;
+    box-shadow: 0 0 0 22px rgba(158,61,100,.08), 0 0 0 44px rgba(158,61,100,.05);
+}
+
+.barra {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #373f493d;
+    pointer-events: none;
+}
+
+.topo { top: 70px; }
+.baixo { bottom: 70px; }
+
+/* =========================================================
+   CARD PRINCIPAL
+   ========================================================= */
+
+#loginVendedor {
+    position: relative;
+    z-index: 1;
+    width: 410px;
+    max-width: 92vw;
+    min-width: 320px;
+    padding: 42px 38px 34px;
+    background: linear-gradient(145deg, rgba(92,136,189,.97), rgba(61,104,157,.96));
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+    overflow: visible;
+    box-shadow: 0 22px 55px rgba(0,35,75,.28), inset 0 1px 0 rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+}
+
+#loginVendedor h1,
+#loginVendedor h2,
+#loginVendedor h3 {
+    color: var(--texto);
+    text-align: center;
+    margin: 0;
+}
+
+#loginVendedor h1 { font-size: 24px; letter-spacing: .3px; }
+#loginVendedor h2 { font-size: 18px; }
+#loginVendedor h3 { font-size: 14px; font-weight: normal; color: var(--texto-suave); }
+
+#loginVendedor > p {
+    color: var(--texto-suave);
+    font-size: 13px;
+    text-align: center;
+    margin: -8px 0 4px;
+}
+
+/* =========================================================
+   LOGO E FORMULÁRIO
+   ========================================================= */
+
+#logoMarca {
+    height: 58px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 2px;
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,.16));
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+    margin: 9px 0;
+}
+
+.input-group input {
+    width: 100%;
+    height: 50px;
+    padding: 16px 44px 7px 16px;
+    font-size: 15px;
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 10px;
+    background: rgba(255,255,255,.13);
+    color: var(--texto);
+    outline: none;
+    transition: .25s ease;
+}
+
+.input-group input::placeholder { color: transparent; }
+
+/* =========================================================
+   PREENCHIMENTO AUTOMÁTICO DO NAVEGADOR
+   Mantém os campos do Protheus com a aparência normal
+   mesmo quando o navegador aplica o fundo padrão amarelo/branco.
+   ========================================================= */
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--texto) !important;
+    caret-color: var(--texto);
+    -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, .13) inset !important;
+    box-shadow: 0 0 0 1000px rgba(255, 255, 255, .13) inset !important;
+    border: 1px solid rgba(255, 255, 255, .45) !important;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.input-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--texto) !important;
+    -webkit-box-shadow:
+        0 0 0 1000px rgba(255, 255, 255, .20) inset,
+        0 0 0 3px rgba(25, 118, 210, .22) !important;
+    box-shadow:
+        0 0 0 1000px rgba(255, 255, 255, .20) inset,
+        0 0 0 3px rgba(25, 118, 210, .22) !important;
+    border-color: rgba(255, 255, 255, .9) !important;
+}
+
+.input-group label {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    color: var(--texto-suave);
+    font-size: 14px;
+    pointer-events: none;
+    transition: .25s ease;
+}
+
+.input-group input:focus,
+.input-group input:valid {
+    border-color: rgba(255,255,255,.9);
+    background: rgba(255,255,255,.2);
+    box-shadow: 0 0 0 3px rgba(25,118,210,.22);
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -8px;
+    left: 12px;
+    padding: 0 6px;
+    font-size: 11px;
+    color: var(--texto);
+    background: var(--azul-card);
+    border-radius: 4px;
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--texto-suave);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-senha:hover { color: var(--texto); }
+
+#btnEntrarLogin {
+    width: 100%;
+    min-height: 46px;
+    margin: 19px 0 0;
+    padding: 11px 22px;
+    color: var(--texto);
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(135deg, var(--azul-principal), var(--azul-escuro));
+    border: 1px solid rgba(255,255,255,.45);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+#btnEntrarLogin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 16px rgba(0,32,96,.3);
+    filter: brightness(1.08);
+}
+
+#btnLoginVendedor {
+    padding: 10px 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    background-color: #6b6b6b;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#btnLoginVendedor:hover { background-color: #5a5a5a; }
+#btnlogininicio { margin-top: 40%; }
+
+#erroLogin {
+    width: 100%;
+    min-height: 18px;
+    margin-top: 6px;
+    color: #ffeb3b;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* =========================================================
+   ACESSO POR CÓDIGO
+   ========================================================= */
+
+.separador-login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: -10px 0  0px;
+    color: rgba(255,255,255,.76);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.separador-login::before,
+.separador-login::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: var(--linha);
+}
+
+.separador-login span { margin: 0 12px; }
+
+#acessoCodigoVendedor {
+    width: 100%;
+    margin-top: 4px;
+    padding: 19px;
+    background: rgba(255,255,255,.11);
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 5px 14px rgba(0,0,0,.08);
+}
+
+#acessoCodigoVendedor h4 {
+    margin: 0 0 5px;
+    color: var(--texto);
+    font-size: 14px;
+}
+
+#codigoVendedorLogin {
+    width: 100%;
+    height: 42px;
+    margin-top: 13px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.164);
+    color: var(--texto-escuro);
+    border: 1px solid #d5dce5;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: .2s ease;
+}
+
+#codigoVendedorLogin::placeholder { color: #8793a1; }
+#codigoVendedorLogin:hover { background: #3b7aad; border-color: #b8c6d5; }
+#codigoVendedorLogin:focus { border-color: var(--azul-principal); box-shadow: 0 0 0 3px rgba(25,118,210,.18); }
+
+#btnAcessarCodigo {
+    width: 100%;
+    height: 40px;
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: linear-gradient(135deg, var(--azul-principal), var(--azul-escuro));
+    color: var(--texto);
+    border: 1px solid #1565b8;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: .2s ease;
+}
+
+#btnAcessarCodigo:hover { background: #1565c0; transform: translateY(-1px); box-shadow: 0 4px 9px rgba(0,0,0,.18); }
+#btnAcessarCodigo:active { transform: translateY(0); }
+#btnAcessarCodigo:disabled { cursor: wait; opacity: .6; }
+
+#erroCodigoVendedor {
+    min-height: 18px;
+    margin-top: 8px;
+    color: #f9f9fa;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.menu button.desativado { opacity: .5; cursor: not-allowed; }
+.menu button.desativado:hover { transform: none; filter: brightness(.9); }
+
+/* =========================================================
+   BORDA ANIMADA
+   ========================================================= */
+
+@property --angulo {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+#loginVendedor::before,
+#loginVendedor::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 26px;
+    padding: 3px;
+    pointer-events: none;
+    z-index: -1;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: circuloBorda 8s linear infinite;
+}
+
+#loginVendedor::before {
+    background: conic-gradient(from var(--angulo), transparent 0 15deg, #3a86e9 15deg 45deg, transparent 45deg 195deg, #3a86e9 195deg 225deg, transparent 225deg);
+    filter: drop-shadow(0 0 5px #009eff) drop-shadow(0 0 12px #0da9d9ad);
+}
+
+#loginVendedor::after {
+    background: conic-gradient(from var(--angulo), transparent 0 105deg, #9e3d64 105deg 135deg, transparent 135deg 285deg, #9e3d64 285deg 315deg, transparent 315deg);
+    animation-duration: 8s;
+    animation-direction: reverse;
+    filter: drop-shadow(0 0 5px #7c0025) drop-shadow(0 0 12px rgba(228,0,70,.8));
+}
+
+@keyframes circuloBorda {
+    from { --angulo: 0deg; }
+    to { --angulo: 360deg; }
+}
+
+#loginVendedor:hover::before { filter: drop-shadow(0 0 6px #00bfff) drop-shadow(0 0 15px #00bfff); }
+#loginVendedor:hover::after { filter: drop-shadow(0 0 6px #e40046) drop-shadow(0 0 15px #e40046); }
+
+@media (max-width: 500px) {
+    #loginVendedor {
+        width: 92vw;
+        min-width: 0;
+        padding: 32px 22px 27px;
+        border-radius: 20px;
+    }
+
+    #loginVendedor::before,
+    #loginVendedor::after { border-radius: 22px; }
+
+    #acessoCodigoVendedor { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #loginVendedor::before,
+    #loginVendedor::after { animation: none; }
+}

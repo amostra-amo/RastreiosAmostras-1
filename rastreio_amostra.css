@@ -1,0 +1,3529 @@
+/* =========================================================
+   RESET / BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+:root {
+    --altura-topbar: 90px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-top: calc(var(--altura-topbar) + 25px);
+    background: var(--cor-fundo);
+}
+
+/* =========================================================
+   TEMAS POR MARCA
+========================================================= */
+
+body.tema-quatrok {
+    --cor-primaria: #7795f8;
+    --cor-barra: linear-gradient(
+        100deg,
+        #173f9e,
+        #315ed1,
+        #173f9e
+    );
+    --cor-menu: #7795f8;
+    --cor-fnotificacao: #7795f8b4;
+    --cor-btntrocarvend: #7795f8;
+    --cor-fundo: #a8b9f0;
+    --cor-btnfechar: red;
+    --cor-tex-notificacao: rgb(0, 0, 0);
+}
+
+body.tema-luara {
+    --cor-primaria: #ffa9cb;
+    --cor-barra: linear-gradient(
+        100deg,
+        #ec407a,
+        #eb789e,
+        #ec407a
+    );
+    --cor-menu: #ffa9cb;
+    --cor-fnotificacao: #ffa9cb98;
+    --cor-btntrocarvend: #ffa9cb;
+    --cor-fundo: #ff9cc383;
+    --cor-btnfechar: red;
+    --cor-tex-notificacao: rgb(0, 0, 0);
+}
+
+
+/* =========================================================
+   TEMA DIRETO
+   Azul escuro / corporativo
+========================================================= */
+
+body.tema-direto {
+    --cor-primaria: #4f7fc4;
+    --cor-secundaria: #0b1f3a;
+    --cor-barra: linear-gradient(
+        100deg,
+        #071a33,
+        #12345d,
+        #0b2442
+    );
+    --cor-menu: #173b68;
+    --cor-fnotificacao: rgba(8, 29, 54, 0.94);
+    --cor-btntrocarvend: #4f7fc4;
+    --cor-fundo: #102b4a;
+    --cor-btnfechar: #ff5c5c;
+    --cor-tex-notificacao: #f1f5f9;
+}
+
+
+/* =========================================================
+   FUNDO DA TELA DE LOGIN
+========================================================= */
+
+body:not(.tema-quatrok):not(.tema-luara):not(.tema-direto) {
+    background:
+        radial-gradient(
+            circle at top center,
+            #183b68 0%,
+            #0d2440 45%,
+            #07182d 100%
+        );
+}
+
+
+/* =========================================================
+   TOPO ANTIGO
+========================================================= */
+
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: var(--cor-secundaria);
+    color: rgb(255, 254, 254);
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 20px;
+    width: 100%;
+}
+
+#sistema {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topo-layout {
+    margin-top: 90px;
+    margin-bottom: 20px;
+}
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--altura-topbar);
+    min-height: var(--altura-topbar);
+    display: flex;
+    align-items: center;
+    background: var(--cor-barra);
+    padding: 10px 20px;
+    box-shadow:
+        0 4px 14px rgba(0, 0, 0, 0.30),
+        0 1px 0 rgba(255, 255, 255, 0.05);
+
+    z-index: 9999;
+}
+
+/* =========================================================
+   BOTÃO MENU
+========================================================= */
+
+.btn-menu {
+    flex-shrink: 0;
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-menu:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.05);
+}
+
+/* =========================================================
+   LOGO TOPO
+========================================================= */
+
+.logo-topo {
+    order: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo-topo img {
+    height: auto;
+}
+
+#logoMarca {
+    height: 50px;
+}
+
+
+/* =========================================================
+   CORREÇÃO DO LOGO QUATROK
+========================================================= */
+
+body.tema-quatrok .logo-topo img {
+    width: 80px;
+}
+
+body.tema-luara #logoMarca {
+    width: 180px;
+}
+
+body.tema-luara .logo-topo img {
+    width: 120px;
+}
+
+body.tema-direto .logo-topo img {
+    width: 110px;
+}
+
+@media (max-width: 768px) {
+
+    .logo-marca-box {
+        max-width: 90px;
+        margin-bottom: 14px;
+    }
+}
+
+/* =========================================================
+   AÇÕES DO TOPO
+========================================================= */
+
+.acoes-topo {
+    order: 2;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+}
+
+.usuario-topo {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 7px 12px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   NOTIFICAÇÕES
+========================================================= */
+
+.icone-topo {
+    background: #f5a3b5;
+    border: none;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    
+}
+
+#btnNotificacoes{
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px;
+    transition: transform 0.2s ease,
+        background 0.2s ease;
+}
+
+/* =========================================================
+   ÍCONE SVG DE NOTIFICAÇÕES
+========================================================= */
+
+#btnNotificacoes .icone-notificacao-svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    flex-shrink: 0;
+    color: #ffffff;
+    stroke: currentColor;
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+}
+
+#btnNotificacoes:hover .icone-notificacao-svg {
+    transform: scale(1.08);
+}
+
+#btnNotificacoes:hover {
+    transform: scale(1.08);
+    background: var(--cor-fundo);
+
+}
+
+#contadorNotificacoes {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #ffd600;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.25);
+    animation: pulse-badge 2s infinite;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ffd600;
+    color: black;
+    font-size: 10px;
+    border-radius: 50%;
+    padding: 2px 4px;
+}
+
+@keyframes pulse-badge {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* =========================================================
+   NOVA BARRA DE PESQUISA CORPORATIVA
+========================================================= */
+
+.filtros-topo {
+    order: 3;
+    flex: 0 0 460px;
+    width: 460px;
+    max-width: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    margin-left: auto;
+}
+
+/* =========================================================
+   CONTAINER PRINCIPAL DA BUSCA
+========================================================= */
+
+.campo-busca-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 460px;
+    min-width: 0;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    overflow: visible;
+}
+
+/* =========================================================
+   FOCO DA BUSCA
+========================================================= */
+
+.campo-busca-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================
+   ÍCONE DE PESQUISA
+========================================================= */
+
+.icone-pesquisa {
+    width: 42px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.icone-pesquisa svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* =========================================================
+   SEPARADOR
+========================================================= */
+
+.separador-busca {
+    width: 1px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.22);
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+#filtroBusca {
+    flex: 1;
+    min-width: 80px;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+#filtroBusca::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
+    opacity: 1;
+}
+
+#filtroBusca:focus::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   BOTÃO TIPO DE PESQUISA
+========================================================= */
+
+.btn-tipo-busca {
+    position: relative;
+    flex-shrink: 0;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 10px;
+    margin-right: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-tipo-busca:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-tipo-busca:active {
+    transform: scale(0.98);
+}
+
+.btn-tipo-busca:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   SETA
+========================================================= */
+
+.btn-tipo-busca .seta-busca {
+    width: 14px;
+    height: 14px;
+    color: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+/* =========================================================
+   MENU DE TIPOS DE PESQUISA
+========================================================= */
+
+.menu-tipo-busca {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 42px;
+    right: auto;
+    width: 220px;
+    background: #ffffff;
+    border: 1px solid #dce2eb;
+    border-radius: 10px;
+    padding: 7px;
+    box-shadow:
+        0 14px 35px rgba(15, 23, 42, 0.18),
+        0 3px 8px rgba(15, 23, 42, 0.08);
+    z-index: 30000;
+    animation: menuBuscaEntrada 0.15s ease-out;
+}
+
+@keyframes menuBuscaEntrada {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   ITENS DO MENU
+========================================================= */
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    font-size: 13px;
+    color: #344054;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.menu-item:hover {
+    background: #eef4ff;
+    color: #2455a4;
+}
+
+.menu-item.ativo {
+    background: var(--cor-primaria, #315eb5);
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* =========================================================
+   ÍCONE DOS TIPOS
+========================================================= */
+
+.menu-icone {
+    width: 30px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: #edf2f7;
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.menu-item:hover .menu-icone {
+    background: #dce9ff;
+    color: #2455a4;
+}
+
+.menu-item.ativo .menu-icone {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+/* =========================================================
+   BOTÃO LIMPAR PESQUISA
+========================================================= */
+
+.btn-limpar-busca {
+    width: 30px;
+    height: 30px;
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.btn-limpar-busca:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.btn-limpar-busca:active {
+    transform: scale(0.95);
+}
+
+.btn-limpar-busca svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* =========================================================
+   ESTADO OCULTO
+========================================================= */
+
+.oculto {
+    display: none !important;
+}
+
+.hidden {
+    display: none;
+}
+
+/* =========================================================
+   CONTADOR
+========================================================= */
+
+.contador {
+    margin-top: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* =========================================================
+   DASHBOARD DE STATUS
+   MESMA LARGURA DO #RESULTADO
+========================================================= */
+
+.dashboard-cards {
+    width: 100%;
+    max-width: 1100px;
+    margin: 6px auto;
+    padding: 0;
+    display: flex;
+    gap: 12px;
+    justify-content: stretch;
+    align-items: stretch;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   CARD DE STATUS
+========================================================= */
+
+.card-status {
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
+    max-width: none;
+    height: 132px;
+    padding: 15px 18px;
+    border-radius: 14px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+    box-shadow:
+        0 7px 18px rgba(0, 0, 0, 0.16);
+}
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.card-status:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.22);
+    filter: brightness(1.03);
+}
+
+/* =========================================================
+   CARD ATIVO
+========================================================= */
+
+.card-status.ativo {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px);
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.25),
+        0 0 0 2px rgba(255, 255, 255, 0.10);
+}
+
+/* =========================================================
+   TOTAL
+========================================================= */
+
+.card-status.total {
+    background: linear-gradient(
+        120deg,
+        #456fbb,
+        #587fc5
+    );
+}
+
+.card-status.total:hover {
+    background: linear-gradient(
+        120deg,
+        #4d78c5,
+        #6289cd
+    );
+}
+
+.card-status.total.ativo {
+    background: linear-gradient(
+        120deg,
+        #4d78c5,
+        #6289cd
+    );
+}
+
+/* =========================================================
+   ENTREGUE
+========================================================= */
+
+.card-status.entregue {
+    background: linear-gradient(
+        120deg,
+        #55b35e,
+        #65bd69
+    );
+}
+
+.card-status.entregue:hover {
+    background: linear-gradient(
+        120deg,
+        #4cac55,
+        #70c575
+    );
+}
+
+.card-status.entregue.ativo {
+    background: linear-gradient(
+        120deg,
+        #4cac55,
+        #70c575
+    );
+}
+
+/* =========================================================
+   PENDENTE
+========================================================= */
+
+.card-status.pendente {
+    background: linear-gradient(
+        120deg,
+        #dda13a,
+        #e9ae45
+    );
+}
+
+.card-status.pendente:hover {
+    background: linear-gradient(
+        120deg,
+        #d9982f,
+        #ebb34e
+    );
+}
+
+.card-status.pendente.ativo {
+    background: linear-gradient(
+        120deg,
+        #d9982f,
+        #ebb34e
+    );
+}
+
+/* =========================================================
+   RETORNADOS
+========================================================= */
+
+.card-status.retornou {
+    background: linear-gradient(
+        120deg,
+        #df5965,
+        #e56670
+    );
+}
+
+.card-status.retornou:hover {
+    background: linear-gradient(
+        120deg,
+        #d94f5c,
+        #e8757d
+    );
+}
+
+.card-status.retornou.ativo {
+    background: linear-gradient(
+        120deg,
+        #d94f5c,
+        #e8757d
+    );
+}
+
+/* =========================================================
+   PARTE SUPERIOR DO CARD
+========================================================= */
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* =========================================================
+   VALOR
+========================================================= */
+
+.card-valor {
+    font-size: 29px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+}
+
+/* =========================================================
+   LABEL
+========================================================= */
+
+.card-label {
+    margin-top: 7px;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* =========================================================
+   INFORMAÇÃO EXTRA
+========================================================= */
+
+.card-extra {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    padding: 4px 8px;
+    width: auto;
+    max-width: 100%;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.1;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.08);
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card-extra::before {
+    content: "↗";
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.85;
+}
+
+.card-status:hover .card-extra {
+    background: rgba(255, 255, 255, 0.19);
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   ÍCONES DOS CARDS
+   SVG PADRÃO
+========================================================= */
+
+.card-icone {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.13);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.18),
+        0 4px 10px rgba(0, 0, 0, 0.18);
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* =========================================================
+   SVG
+========================================================= */
+
+.card-icone svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    flex-shrink: 0;
+    color: currentColor;
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+/* =========================================================
+   HOVER ÍCONE
+========================================================= */
+
+.card-status:hover .card-icone {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.20);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.25),
+        0 5px 14px rgba(0, 0, 0, 0.22);
+}
+
+.card-status:hover .card-icone svg {
+    transform: scale(1.05);
+}
+
+/* =========================================================
+   ÍCONE ATIVO
+========================================================= */
+
+.card-status.ativo .card-icone {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.28),
+        0 5px 15px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   RESULTADOS
+   MESMA LARGURA DO DASHBOARD
+========================================================= */
+
+#resultado {
+    width: 100%;
+    max-width: 1100px;
+    margin: 25px auto;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DOS CARDS
+========================================================= */
+
+@keyframes pulo-card {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-6px);
+    }
+
+    70% {
+        transform: translateY(0);
+    }
+
+    85% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   CARD DE ENVIO
+========================================================= */
+
+.card {
+    position: relative;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+    border-radius: 14px;
+    padding: 8px 16px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.20);
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    border: 2px solid var(--cor-status);
+}
+
+.card:hover {
+    animation: pulo-card 0.8s ease;
+    box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.28);
+    background: rgba(255, 255, 255, 0.884);
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background: var(--cor-status);
+}
+
+.card.entregue {
+    --cor-status: #4caf50;
+}
+
+.card.pendente {
+    --cor-status: #fbc02d;
+}
+
+.card.retornado {
+    --cor-status: #e53935;
+}
+
+.card.outro {
+    --cor-status: #9e9e9e;
+}
+
+/* =========================================================
+   ÍCONE DE ENVIO
+========================================================= */
+
+.icone-envio {
+    position: absolute;
+    left: 14px;
+    width: 80px;
+    height: auto;
+    z-index: 9;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+
+    .icone-envio {
+        width: 100px;
+        top: 8px;
+        left: 12px;
+    }
+}
+
+/* =========================================================
+   CLIENTE
+========================================================= */
+
+.cardcliente {
+    display: block;
+    max-width: calc(98% - 26px);
+    background: color-mix(
+        in srgb,
+        var(--cor-primaria) 10%,
+        transparent
+    );
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardcliente * {
+    white-space: nowrap;
+}
+
+/* =========================================================
+   REPRESENTANTE
+========================================================= */
+
+.cardrepresentante {
+    display: block;
+    max-width: calc(100% - 26px);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+
+.cardrepresentante * {
+    white-space: nowrap;
+}
+body #btnNotificacoes{
+    position: relative;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 8px;
+    transition: transform 0.2s ease,
+        background 0.2s ease;
+}
+
+body #contadorNotificacoes{
+    position: absolute;
+    top: -4px;
+    right: -3px;
+    background: #ffd600;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    animation: pulse-badge 2s infinite;
+}
+
+/* =========================================================
+   SITUAÇÃO
+========================================================= */
+
+.situacao {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: color-mix(
+        in srgb,
+        var(--cor-status) 20%,
+        transparent
+    );
+    color: #856404;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.cardsituacao {
+    display: block;
+    max-width: calc(100% - 26px);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardsituacao * {
+    white-space: nowrap;
+}
+
+/* =========================================================
+   LINHAS DOS CARDS
+========================================================= */
+
+.linhacard {
+    display: flex;
+    margin-top: 5px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* =========================================================
+   ALERTA RETIRADA
+========================================================= */
+
+#resultado .card .alerta-retirada {
+    position: absolute;
+    top: 10px;
+    left: 80%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    z-index: 11;
+}
+
+.card:hover .alerta-retirada {
+    animation-play-state: paused;
+}
+
+.alerta-retirada {
+    animation: none !important;
+    transition: none !important;
+}
+
+#resultado .aguardando-retirada,
+#overlayDetalhes .aguardando-retirada {
+    color: #d50000;
+    font-weight: bold;
+    text-shadow:
+        0 0 5px rgba(213, 0, 0, 0.185);
+}
+
+/* =========================================================
+   FAIXA LATERAL DE STATUS
+========================================================= */
+
+.faixa-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 46px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-weight: bold;
+    font-size: 12px;
+    color: #fff;
+    gap: 6px;
+    border-radius: 0 14px 14px 0;
+}
+
+.faixa-status small {
+    font-size: 11px;
+
+    font-weight: normal;
+
+    opacity: 0.9;
+}
+
+.faixa-status.entregue {
+    background: #4caf50;
+}
+
+.faixa-status.retornou {
+    background: #e53935;
+}
+
+.faixa-status.pendente {
+    background: #fbc02d;
+}
+
+/* =========================================================
+   PAINEL DE DETALHES (BASE GENÉRICA)
+   Usada pelo painel de notificações.
+   O painel de DETALHES (#overlayDetalhes) usa o modelo
+   corporativo definido mais abaixo, que tem prioridade.
+========================================================= */
+
+.painel-detalhes {
+    background: #ffffff;
+    width: 600px;
+    height: 100%;
+    min-height: 600px;
+    border-radius: 18px;
+    padding: 20px 20px 30px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.35);
+    position: relative;
+    text-align: center;
+    animation: entrarPainel 0.1s ease-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.painel-detalhes h3 {
+    color: var(--cor-tex-notificacao);
+}
+
+/* =========================================================
+   BOTÃO FECHAR (BASE GENÉRICA)
+========================================================= */
+
+.painel-detalhes .fechar {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    border: none;
+    background: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #444;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.painel-detalhes .fechar:hover {
+    color: var(--cor-btnfechar);
+    transform: scale(1.08);
+}
+
+@keyframes entrarPainel {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(16px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.painel-detalhes.saindo {
+    animation:
+        sairPainel 0.2s ease-in forwards;
+}
+
+@keyframes sairPainel {
+
+    from {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -540px;
+    width: 270px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #0b2341 0%,
+        #0d2d52 50%,
+        #071a31 100%
+    );
+    color: white;
+    padding: 10px 15px;
+    transition: left 0.3s ease;
+    z-index: 21000;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        8px 0 30px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar.ativa {
+    left: 0;
+}
+
+/* =========================================================
+   MENU CENTRAL
+========================================================= */
+
+.menu-centro {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* =========================================================
+   MENU INFERIOR
+========================================================= */
+
+.menu-bottom {
+    margin-top: auto;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+/* =========================================================
+   BOTÕES DA SIDEBAR
+========================================================= */
+
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.sidebar button:hover {
+    background: rgba(80, 135, 200, 0.16);
+    border-radius: 12px;
+}
+
+.sidebar button.ativo {
+    background: linear-gradient(
+        90deg,
+        rgba(58, 112, 180, 0.65),
+        rgba(38, 82, 140, 0.45)
+    );
+    border-radius: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow:
+        inset 3px 0 0 #6fa4e8,
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar button.ativo:hover {
+    background: linear-gradient(
+        90deg,
+        rgba(70, 130, 205, 0.75),
+        rgba(45, 95, 155, 0.55)
+    );
+    color: #ffffff;
+}
+
+/* =========================================================
+   INÍCIO
+========================================================= */
+
+.btnInicio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    background: none;
+    border: none;
+    color: #d7e4f5;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.btnInicio svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.btnInicio span {
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.btnInicio:hover {
+    background: rgba(80, 135, 200, 0.16);
+}
+
+.btnInicio:hover svg,
+.btnInicio:hover span {
+    color: #82b4ee;
+    stroke: #82b4ee;
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.btn-logout svg {
+    width: 22px;
+    height: 22px;
+    fill: #e0e0e0;
+    transition: 0.2s;
+}
+
+.btn-logout span {
+    color: #e0e0e0;
+    font-size: 18px;
+    transition: 0.2s;
+}
+
+.btn-logout:hover svg,
+.btn-logout:hover span {
+    color: #ff4d4d;
+    fill: #ff4d4d;
+}
+
+/* =========================================================
+   MENUS DESATIVADOS
+========================================================= */
+
+.menu-btn.ativo {
+    background: linear-gradient(
+        90deg,
+        rgba(58, 112, 180, 0.65),
+        rgba(38, 82, 140, 0.45)
+    );
+    border-radius: 12px;
+    font-weight: bold;
+    box-shadow:
+        inset 3px 0 0 #6fa4e8;
+}
+
+.menu-btn.desativado {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.menu-btn:disabled {
+    pointer-events: none;
+}
+
+.menu-btn.desativado:hover {
+    transform: none;
+    background: inherit;
+}
+
+/* =========================================================
+   OVERLAY SIDEBAR
+========================================================= */
+
+.overlay-sidebar {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 1500;
+}
+
+.overlay-sidebar.ativo {
+    display: block;
+}
+
+/* =========================================================
+   CONTEÚDO APP
+========================================================= */
+
+.conteudo-app {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.secao {
+    display: none;
+}
+
+.secao.ativa {
+    display: block;
+}
+
+/* =========================================================
+   BOTÃO ANALYTICS
+========================================================= */
+
+#btnAnalytics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: #fff;
+    background: var(--cor-fnotificacao);
+    border-radius: 8px;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+#btnAnalytics:hover {
+    transform: scale(1.1);
+    background-color: rgba(46, 67, 255, 0.705);
+}
+
+/* =========================================================
+   ALERTA NA TELA
+========================================================= */
+
+.alerta-tela {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.alerta-tela.show {
+    opacity: 1;
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes pulse-alerta {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.75;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+    .filtros-topo {
+        flex: 0 0 340px;
+        width: 340px;
+        max-width: 340px;
+        margin-left: auto;
+    }
+    .campo-busca-wrapper {
+        max-width: 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --altura-topbar: 64px;
+    }
+
+    body {
+        padding-top:
+            calc(var(--altura-topbar) + 20px);
+    }
+
+    /* =====================================================
+       TOPBAR
+    ===================================================== */
+
+    .topbar {
+        height: var(--altura-topbar);
+        min-height: var(--altura-topbar);
+        padding: 8px;
+        gap: 8px;
+        flex-wrap: nowrap;
+        border-radius:
+            0 0 12px 12px;
+    }
+
+    /* =====================================================
+       MENU
+    ===================================================== */
+
+    .btn-menu {
+        margin-right: 2px;
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-topo {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* =====================================================
+       AÇÕES
+    ===================================================== */
+
+    .acoes-topo {
+        justify-content: space-between;
+        align-items: left;
+        gap: 5px;
+    }
+
+    .usuario-topo {
+        font-size: 11px;
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        background:
+            rgba(255, 255, 255, 0.2);
+
+        padding: 4px 8px;
+        border-radius: 8px;
+    }
+
+    .icone-topo {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+
+    /* =====================================================
+       BARRA DE PESQUISA MOBILE
+    ===================================================== */
+
+    .filtros-topo {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: none;
+        min-width: 0;
+        margin-left: auto;
+        justify-content: stretch;
+    }
+
+    .campo-busca-wrapper {
+        width: 100%;
+        max-width: none;
+        height: 38px;
+        border-radius: 10px;
+    }
+
+    .icone-pesquisa {
+        width: 35px;
+    }
+
+    .icone-pesquisa svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .separador-busca {
+        height: 20px;
+    }
+
+    #filtroBusca {
+        min-width: 40px;
+        font-size: 12px;
+        padding: 0 6px;
+    }
+
+    #filtroBusca::placeholder {
+        font-size: 11px;
+    }
+
+    .btn-tipo-busca {
+        height: 28px;
+        padding: 0 7px;
+        margin-right: 3px;
+        gap: 3px;
+        border-radius: 7px;
+        font-size: 10px;
+    }
+
+    .btn-tipo-busca .seta-busca {
+        width: 11px;
+        height: 11px;
+    }
+
+    .btn-limpar-busca {
+        width: 28px;
+        height: 28px;
+        margin-right: 3px;
+    }
+
+    .btn-limpar-busca svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .menu-tipo-busca {
+        top: calc(100% + 7px);
+        left: 35px;
+        right: auto;
+        width: 210px;
+        border-radius: 9px;
+    }
+
+    .menu-item {
+        min-height: 38px;
+        font-size: 12px;
+    }
+
+    /* =====================================================
+       DASHBOARD MOBILE
+    ===================================================== */
+
+    .dashboard-cards {
+        width: 100%;
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+        padding: 0;
+    }
+
+    .card-status {
+        width: 100%;
+        height: 100px;
+        padding: 13px 12px;
+        border-radius: 12px;
+    }
+
+    .card-valor {
+        font-size: 24px;
+    }
+
+    .card-label {
+        font-size: 12px;
+        margin-top: 7px;
+    }
+
+    .card-extra {
+        font-size: 9px;
+        padding: 4px 6px;
+        margin-top: 7px;
+    }
+
+    .card-icone {
+        width: 36px;
+        height: 36px;
+        border-radius: 9px;
+    }
+
+    .card-icone svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    /* =====================================================
+       RESULTADOS MOBILE
+    ===================================================== */
+
+    #resultado {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-width: 1100px;
+        padding: 0;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    /* =====================================================
+       CARDS MOBILE
+    ===================================================== */
+
+    .card {
+        width: 100%;
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    /* =====================================================
+       CLIENTE
+    ===================================================== */
+
+    .cardcliente {
+        display: block;
+        max-width:
+            calc(100% - 26px);
+
+        padding: 4px 8px;
+        margin-bottom: 3px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cardcliente * {
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+       REPRESENTANTE
+    ===================================================== */
+
+    .cardrepresentante {
+        display: block;
+        max-width:
+            calc(100% - 26px);
+
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cardrepresentante * {
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+       SITUAÇÃO
+    ===================================================== */
+
+    .cardsituacao {
+        display: block;
+        max-width:
+            calc(100% - 26px);
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .cardsituacao * {
+        white-space: nowrap;
+    }
+
+    /* =====================================================
+       FAIXA
+    ===================================================== */
+
+    .faixa-status {
+        width: 38px;
+        font-size: 11px;
+    }
+
+    /* =====================================================
+       DETALHES CORPORATIVOS
+    ===================================================== */
+
+    #overlayDetalhes .painel-detalhes {
+        width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        max-height: 100vh;
+        border-left: none;
+    }
+
+    #overlayDetalhes .detalhes-centro {
+        padding:
+            24px 20px 28px;
+    }
+
+    #overlayDetalhes .detalhes-centro h3 {
+        font-size: 18px;
+    }
+
+    #overlayDetalhes .linha-dupla {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    #overlayDetalhes .linha-dupla span:last-child {
+        text-align: left;
+    }
+
+    #overlayDetalhes .linha-rastreio-central {
+        font-size: 13px;
+    }
+
+    #overlayDetalhes .lista-itens.lista-scroll {
+        max-height: 220px;
+    }
+
+    #overlayDetalhes .icone-envio-detalhes {
+        right: 64px;
+        width: 46px;
+    }
+
+    /* =====================================================
+       TOPO ANTIGO
+    ===================================================== */
+
+    .topo-layout {
+        margin-top: 50px;
+    }
+
+    .container {
+        padding: 30px 16px;
+    }
+
+    .topo {
+        padding: 14px 10px;
+    }
+
+    .topo h1 {
+        font-size: 18px;
+    }
+
+    .topo .logo {
+        max-width: 120px;
+        height: auto;
+    }
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    .logo-login {
+        display: block;
+        margin: 0 auto 18px auto;
+        max-width: 140px;
+        height: auto;
+    }
+
+    .boas-vindas {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+}
+
+/* =========================================================
+   MODO BUSCA MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    body.modo-busca #resultado {
+        order: 2;
+    }
+}
+
+/* =========================================================
+   PESQUISA CORPORATIVA
+   POSIÇÃO: ABAIXO DOS CARDS DE STATUS
+========================================================= */
+
+.area-pesquisa-corporativa {
+    width: 100%;
+    max-width: 1100px;
+    margin: 34px auto 20px;
+    padding: 0;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* =========================================================
+   BARRA PRINCIPAL
+========================================================= */
+
+.area-pesquisa-corporativa .filtros-topo {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   CAMPO DE BUSCA
+========================================================= */
+
+.area-pesquisa-corporativa .campo-busca-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background: #ffffff;
+    border: 1px solid #d7dee8;
+    border-radius: 10px;
+    box-shadow:
+        0 2px 6px rgba(15, 23, 42, 0.05);
+
+    overflow: visible;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.area-pesquisa-corporativa .campo-busca-wrapper:focus-within {
+    border-color: #94a3b8;
+    box-shadow:
+        0 0 0 3px rgba(71, 103, 145, 0.08);
+}
+
+/* =========================================================
+   ÍCONE DE PESQUISA
+========================================================= */
+
+.area-pesquisa-corporativa .icone-pesquisa {
+    width: 52px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #334155;
+    pointer-events: none;
+}
+
+.area-pesquisa-corporativa .icone-pesquisa svg {
+    width: 19px;
+    height: 19px;
+}
+
+/* =========================================================
+   TIPO DE PESQUISA
+========================================================= */
+
+.area-pesquisa-corporativa .btn-tipo-busca {
+    position: relative;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin: 0 10px 0 0;
+    padding: 0 2px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: none;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.area-pesquisa-corporativa .btn-tipo-busca:hover {
+    background: transparent;
+    border-color: transparent;
+    color: #1e3a5f;
+    transform: none;
+}
+
+.area-pesquisa-corporativa .btn-tipo-busca:active {
+    transform: none;
+}
+
+.area-pesquisa-corporativa .btn-tipo-busca .seta-busca {
+    width: 13px;
+    height: 13px;
+    color: #475569;
+}
+
+/* =========================================================
+   SEPARADOR
+========================================================= */
+
+.area-pesquisa-corporativa .separador-busca {
+    width: 1px;
+    height: 26px;
+    flex-shrink: 0;
+    background: #dce2ea;
+}
+
+/* =========================================================
+   INPUT
+========================================================= */
+
+.area-pesquisa-corporativa #filtroBusca {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.area-pesquisa-corporativa #filtroBusca::placeholder {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 1;
+}
+
+
+/* =========================================================
+   LIMPAR PESQUISA
+========================================================= */
+
+.area-pesquisa-corporativa .btn-limpar-busca {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 0 4px 0 0;
+    padding: 0;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    box-shadow: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.area-pesquisa-corporativa .btn-limpar-busca:hover {
+    background: #f1f5f9;
+    color: #334155;
+    transform: none;
+}
+
+.area-pesquisa-corporativa .btn-limpar-busca svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================================
+   MENU DE TIPOS
+========================================================= */
+
+.area-pesquisa-corporativa .menu-tipo-busca {
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 52px;
+    right: auto;
+    width: 220px;
+    padding: 7px;
+    background: #ffffff;
+    border: 1px solid #dce2ea;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+    z-index: 30000;
+}
+
+.area-pesquisa-corporativa .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 38px;
+    padding: 7px 9px;
+    border-radius: 6px;
+    color: #334155;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.area-pesquisa-corporativa .menu-item:hover {
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.area-pesquisa-corporativa .menu-icone {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid #dbe3eb;
+    border-radius: 5px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) and (min-width: 769px) {
+
+    .area-pesquisa-corporativa {
+        width: calc(100% - 32px);
+        margin-top: 28px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .area-pesquisa-corporativa {
+        width: calc(100% - 24px);
+        margin: 20px auto 16px;
+    }
+
+    .area-pesquisa-corporativa .campo-busca-wrapper {
+        height: 42px;
+        border-radius: 8px;
+    }
+
+    .area-pesquisa-corporativa .icone-pesquisa {
+        width: 40px;
+    }
+
+    .area-pesquisa-corporativa .icone-pesquisa svg {
+        width: 17px;
+        height: 17px;
+    }
+
+    .area-pesquisa-corporativa .btn-tipo-busca {
+        height: 30px;
+        margin-right: 7px;
+        font-size: 12px;
+    }
+
+    .area-pesquisa-corporativa #filtroBusca {
+        padding: 0 8px;
+        font-size: 13px;
+    }
+
+    .area-pesquisa-corporativa #filtroBusca::placeholder {
+        font-size: 12px;
+    }
+
+    .area-pesquisa-corporativa .separador-busca {
+        height: 22px;
+    }
+
+    .area-pesquisa-corporativa .btn-limpar-busca {
+        width: 32px;
+        height: 32px;
+    }
+
+    .area-pesquisa-corporativa .menu-tipo-busca {
+        left: 40px;
+        width: 210px;
+    }
+
+}
+
+/* =========================================================
+   MODELO FINAL
+   BUSCA ABAIXO DOS CARDS
+   PAINEL DE DETALHES CORPORATIVO
+========================================================= */
+
+body .filtros-topo {
+    order: initial;
+    flex: none;
+    width: min(100% - 28px, 1100px);
+    max-width: 1100px;
+    margin: 34px auto 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+    padding: 0;
+}
+
+body .campo-busca-wrapper {
+    width: 100%;
+    max-width: none;
+    height: 46px;
+    background: #ffffff;
+    border: 1px solid #cbd2dd;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+body .campo-busca-wrapper:focus-within {
+    background: #ffffff;
+    border-color: #6c8fca;
+    box-shadow: 0 0 0 3px rgba(47, 98, 180, 0.10);
+}
+
+body .icone-pesquisa {
+    color: #344054;
+}
+
+body .separador-busca {
+    background: #d9dee7;
+}
+
+body #filtroBusca {
+    color: #344054;
+    font-size: 15px;
+}
+
+body #filtroBusca::placeholder {
+    color: #8a91a0;
+}
+
+body .btn-tipo-busca {
+    height: 44px;
+    padding: 0 15px;
+    margin-right: 4px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: #161b26;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+body .btn-tipo-busca:hover {
+    background: #f2f5fa;
+}
+
+body .btn-tipo-busca .seta-busca {
+    color: #344054;
+}
+
+body .btn-limpar-busca {
+    color: #667085;
+}
+
+body .menu-tipo-busca {
+    top: calc(100% + 8px);
+    left: 0;
+    right: auto;
+    width: 220px;
+}
+
+body .dashboard-cards {
+    width: min(100% - 28px, 1100px);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+body #resultado {
+    width: min(100% - 28px, 1100px);
+    max-width: 1100px;
+    margin: 26px auto 30px;
+}
+
+/* =========================================================
+   OVERLAY DOS DETALHES
+   MODELO CORPORATIVO
+========================================================= */
+
+#overlayDetalhes {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    background: rgba(15, 23, 42, 0.38);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+#overlayDetalhes.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* =========================================================
+   PAINEL LATERAL DE DETALHES
+========================================================= */
+
+#overlayDetalhes .painel-detalhes {
+    position: relative;
+    width: 500px;
+    max-width: 92vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    border: none;
+    border-left: 1px solid #d9e0e7;
+    border-radius: 0;
+    box-shadow:-8px 0 28px rgba(15, 23, 42, 0.14);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    text-align: left;
+    animation: abrirDetalhesCorporativo 0.28s ease-out forwards;
+}
+
+#overlayDetalhes .painel-detalhes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--cor-barra);
+    z-index: 5;
+}
+
+@keyframes abrirDetalhesCorporativo {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* =========================================================
+   BOTÃO FECHAR DOS DETALHES
+========================================================= */
+
+#overlayDetalhes .painel-detalhes .fechar {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d9e0e7;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #475569;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 20;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+#overlayDetalhes .painel-detalhes .fechar:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #1e293b;
+    transform: none;
+}
+
+/* =========================================================
+   CONTEÚDO DOS DETALHES
+========================================================= */
+
+#overlayDetalhes #conteudoDetalhes {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+#overlayDetalhes #conteudoDetalhes::-webkit-scrollbar {
+    width: 6px;
+}
+
+#overlayDetalhes #conteudoDetalhes::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#overlayDetalhes #conteudoDetalhes::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+#overlayDetalhes #conteudoDetalhes::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* =========================================================
+   ÁREA CENTRAL DOS DETALHES
+========================================================= */
+
+#overlayDetalhes .detalhes-centro {
+    position: relative;
+    width: 100%;
+    padding: 28px 28px 32px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+#overlayDetalhes .detalhes-centro h3 {
+    margin: 0;
+    padding: 4px 52px 18px 0;
+    border-bottom: 1px solid #e2e8f0;
+    color: #1e293b;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* =========================================================
+   SUBTÍTULOS
+========================================================= */
+
+#overlayDetalhes .detalhes-centro h4 {
+    margin: 24px 0 12px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* =========================================================
+   LINHAS SIMPLES
+========================================================= */
+
+#overlayDetalhes .linha-simples {
+    display: flex;
+    align-items: center;
+    min-height: 42px;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #eef2f6;
+    color: #334155;
+    font-size: 14px;
+}
+
+/* =========================================================
+   LINHAS DUPLAS
+========================================================= */
+
+#overlayDetalhes .linha-dupla {
+    display: grid;
+    grid-template-columns: minmax(120px, 38%) 1fr;
+    align-items: center;
+    gap: 18px;
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #eef2f6;
+    color: #334155;
+    font-size: 14px;
+}
+
+#overlayDetalhes .linha-dupla span {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+#overlayDetalhes .linha-dupla span:first-child {
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+#overlayDetalhes .linha-dupla span:last-child {
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* =========================================================
+   LISTA DE ITENS
+========================================================= */
+
+#overlayDetalhes .lista-itens {
+    margin: 8px 0 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+#overlayDetalhes .detalhes-centro .lista-itens {
+    display: block;
+    text-align: left;
+    margin: 8px 0 0;
+}
+
+#overlayDetalhes .lista-itens li {
+    position: relative;
+    margin: 0;
+    padding: 10px 0 10px 18px;
+    border-bottom: 1px solid #eef2f6;
+    color: #334155;
+    font-size: 14px;
+}
+
+#overlayDetalhes .lista-itens li::before {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 17px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cor-barra);
+}
+
+#overlayDetalhes .lista-itens.lista-scroll {
+    width: 100%;
+    max-height: 220px;
+    overflow-y: auto;
+    padding-right: 8px;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   RASTREIO
+========================================================= */
+
+#overlayDetalhes .linha-rastreio-central {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 18px 0;
+    padding: 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+#overlayDetalhes .linha-rastreio-central button {
+    min-height: 36px;
+    padding: 8px 14px;
+    border: 1px solid var(--cor-primaria);
+    border-radius: 6px;
+    background: var(--cor-primaria);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#overlayDetalhes .linha-rastreio-central button:hover {
+    filter: brightness(0.94);
+    box-shadow:
+        0 3px 8px rgba(15, 23, 42, 0.14);
+    transform: none;
+}
+
+#overlayDetalhes .linha-rastreio-central button:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* =========================================================
+   ÍCONE DE ENVIO
+========================================================= */
+
+#overlayDetalhes .icone-envio-detalhes {
+    position: absolute;
+    top: 24px;
+    right: 70px;
+    left: auto;
+    width: 100px;
+    height: auto;
+    z-index: 9;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* =========================================================
+   ANIMAÇÃO DO CONTEÚDO
+========================================================= */
+
+#overlayDetalhes #conteudoDetalhes > * {
+    animation: aparecerConteudoDetalhes 0.25s ease-out;
+}
+
+@keyframes aparecerConteudoDetalhes {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   SAÍDA DO PAINEL
+========================================================= */
+
+#overlayDetalhes .painel-detalhes.saindo {
+    animation: fecharDetalhesCorporativo 0.2s ease-in forwards;
+}
+
+@keyframes fecharDetalhesCorporativo {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+/* =========================================================
+   ELEMENTOS DE STATUS
+========================================================= */
+
+#overlayDetalhes .status,
+#overlayDetalhes .situacao,
+#overlayDetalhes .badge-status {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 4px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================================
+   AMENV
+========================================================= */
+
+#overlayDetalhes .amenv {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+/* =========================================================
+   NOTIFICAÇÕES
+   PAINEL CORPORATIVO
+========================================================= */
+
+#overlayNotificacoes {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-end;
+    background:
+        rgba(15, 23, 42, 0.42);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.22s ease;
+}
+
+
+/* =========================================================
+   OVERLAY ABERTO
+========================================================= */
+
+#overlayNotificacoes.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* =========================================================
+   PAINEL
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes {
+    position: relative;
+    width: 470px;
+    max-width: 94vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-left: 1px solid #d8dee8;
+    border-radius: 16px 0 0 16px;
+    box-shadow:
+        -14px 0 40px rgba(15, 23, 42, 0.18);
+    overflow: hidden;
+    text-align: left;
+    transform: translateX(100%);
+    transition:
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   PAINEL ABERTO
+========================================================= */
+
+#overlayNotificacoes.show .painel-detalhes {
+    transform: translateX(0);
+}
+
+/* =========================================================
+   LINHA SUPERIOR DO PAINEL
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background:
+        var(--cor-barra);
+    z-index: 10;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes h3 {
+    position: relative;
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 86px;
+    margin: 0;
+    padding:
+        20px
+        70px
+        18px
+        24px;
+
+    border-bottom: 1px solid #e4e8ee;
+    background: #ffffff;
+    color: #1f2937;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* =========================================================
+   SUBTÍTULO
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes h3::after {
+    content:
+        "Pedidos que precisam de atenção";
+    position: absolute;
+    left: 24px;
+    bottom: 14px;
+    color: #8490a0;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0.01em;
+}
+
+/* =========================================================
+   BOTÃO FECHAR
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes .fechar {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #d7dee8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #475569;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 20;
+    transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+/* =========================================================
+   BOTÃO FECHAR HOVER
+========================================================= */
+
+#overlayNotificacoes .painel-detalhes .fechar:hover {
+    background: #f4f7fa;
+    border-color: #c7d0dc;
+    color: #1f2937;
+    transform: none;
+}
+
+/* =========================================================
+   LISTA
+========================================================= */
+
+#overlayNotificacoes #listaNotificacoes {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding:
+        16px
+        14px
+        20px;
+    background:
+        #f5f7fa;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color:
+        #c4ccd7
+        transparent;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+#overlayNotificacoes #listaNotificacoes::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* =========================================================
+   SCROLLBAR TRACK
+========================================================= */
+
+#overlayNotificacoes #listaNotificacoes::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* =========================================================
+   SCROLLBAR THUMB
+========================================================= */
+
+#overlayNotificacoes #listaNotificacoes::-webkit-scrollbar-thumb {
+    background:
+        #c8d0db;
+    border-radius: 10px;
+}
+
+/* =========================================================
+   SCROLLBAR THUMB HOVER
+========================================================= */
+
+#overlayNotificacoes #listaNotificacoes::-webkit-scrollbar-thumb:hover {
+    background:
+        #aeb8c5;
+}
+
+/* =========================================================
+   ITEM
+========================================================= */
+
+#overlayNotificacoes .notificacao-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 100%;
+    min-height: 92px;
+    height: auto;
+    margin: 0;
+    padding:
+        14px
+        46px
+        13px
+        18px;
+    box-sizing: border-box;
+    display: block;
+    background: #ffffff;
+    border:
+        1px solid #dde3ea;
+    border-radius: 10px;
+    box-shadow:
+        0 1px 3px rgba(15, 23, 42, 0.05);
+    color: #344054;
+    font-size: 13px;
+    line-height: 1.65;
+    text-align: left;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+        border-color 0.18s ease,
+        background-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+/* =========================================================
+   ITEM HOVER
+========================================================= */
+
+#overlayNotificacoes .notificacao-item:hover {
+    background: #fbfcfe;
+    border-color:
+        #b9c8da;
+    box-shadow:
+        0 4px 12px rgba(15, 23, 42, 0.08);
+    transform: none;
+}
+
+/* =========================================================
+   ITEM FOCUS
+========================================================= */
+
+#overlayNotificacoes .notificacao-item:focus-visible {
+    outline:
+        2px solid #4f7fc4;
+    outline-offset:
+        2px;
+}
+
+/* =========================================================
+   BARRA DE STATUS
+========================================================= */
+
+#overlayNotificacoes .notificacao-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background:
+        #94a3b8;
+    border-radius:
+        10px 0 0 10px;
+}
+
+/* =========================================================
+   SETA DO ITEM
+========================================================= */
+
+#overlayNotificacoes .notificacao-item::after {
+    content: "›";
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform:
+        translateY(-50%);
+    color: #a0acba;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+    transition:
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+/* =========================================================
+   SETA HOVER
+========================================================= */
+
+#overlayNotificacoes .notificacao-item:hover::after {
+    color: #4f7fc4;
+    transform:
+        translate(2px, -50%);
+}
+
+/* =========================================================
+   LABELS
+========================================================= */
+
+#overlayNotificacoes .notificacao-item strong {
+    color: #526071;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   PRIMEIRO LABEL
+   NOTA / NOTAS
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item strong:first-child {
+    color: #1f2937;
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   STATUS ENTREGUE
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.entregue::before {
+    background:
+        #43a047;
+}
+
+/* =========================================================
+   STATUS PENDENTE
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.pendente::before {
+    background:
+        #dda13a;
+}
+
+/* =========================================================
+   STATUS RETORNADO
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.retornado::before {
+    background:
+        #d9535f;
+}
+
+/* =========================================================
+   OUTROS STATUS
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.outro::before {
+    background:
+        #8793a2;
+}
+
+/* =========================================================
+   ALERTA DE RETIRADA
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.alerta-retirada {
+    min-height: 92px;
+    background:
+        #fff9f9;
+    border-color:
+        #efc9cd;
+    color:
+        #8f2730;
+    box-shadow:
+        0 2px 6px rgba(180, 35, 24, 0.06);
+}
+
+/* =========================================================
+   BARRA DO ALERTA
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.alerta-retirada::before {
+    width: 4px;
+    background:
+        #d9363e;
+}
+
+/* =========================================================
+   ALERTA HOVER
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.alerta-retirada:hover {
+    background:
+        #fff6f6;
+    border-color:
+        #e7b5ba;
+    box-shadow:
+        0 4px 12px rgba(180, 35, 24, 0.08);
+}
+
+/* =========================================================
+   ALERTA — SETA
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.alerta-retirada::after {
+    color:
+        #d36a71;
+}
+
+/* =========================================================
+   OCULTAR ELEMENTOS INTERNOS ANTIGOS
+========================================================= */
+
+#overlayNotificacoes
+.notificacao-item.alerta-retirada
+.icone-alerta {
+    display: none;
+}
+
+/* =========================================================
+   ESTADO VAZIO
+========================================================= */
+
+#overlayNotificacoes
+#listaNotificacoes:empty::before {
+    content:
+        "Nenhuma notificação pendente.";
+    flex: 1;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    color:
+        #8b95a3;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #overlayNotificacoes {
+        justify-content:
+            flex-end;
+    }
+
+    #overlayNotificacoes .painel-detalhes {
+        width: 100vw;
+        max-width: 100vw;
+        border-radius:
+            14px 0 0 0;
+        box-shadow:
+            -8px 0 28px rgba(15, 23, 42, 0.18);
+    }
+
+    #overlayNotificacoes .painel-detalhes h3 {
+        min-height: 82px;
+        padding:
+            19px
+            60px
+            16px
+            20px;
+        font-size: 18px;
+    }
+
+    #overlayNotificacoes
+    .painel-detalhes
+    h3::after {
+        left: 20px;
+        bottom: 13px;
+        font-size: 10px;
+    }
+
+
+    #overlayNotificacoes
+    .painel-detalhes
+    .fechar {
+        top: 16px;
+        right: 14px;
+        width: 36px;
+        height: 36px;
+    }
+
+
+    #overlayNotificacoes
+    #listaNotificacoes {
+        gap: 8px;
+        padding:
+            12px
+            10px
+            18px;
+    }
+
+
+    #overlayNotificacoes
+    .notificacao-item {
+        min-height: 88px;
+        padding:
+            13px
+            42px
+            12px
+            17px;
+
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+
+    #overlayNotificacoes
+    .notificacao-item strong:first-child {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    #overlayNotificacoes
+    .painel-detalhes
+    h3 {
+        font-size: 17px;
+    }
+
+
+    #overlayNotificacoes
+    .notificacao-item {
+        min-height: 86px;
+        padding:
+            12px
+            39px
+            11px
+            16px;
+    }
+
+
+    #overlayNotificacoes
+    .notificacao-item::after {
+        right: 12px;
+        font-size: 22px;
+    }
+}

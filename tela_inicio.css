@@ -1,0 +1,1233 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+    min-height: 100dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 255, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255, 255, 255, 0.06),
+            transparent 32%
+        ),
+        #7185a6;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   DECORAÇÕES DO FUNDO
+========================================================= */
+
+.background-decoration {
+    position: fixed;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(2px);
+
+    opacity: 0.35;
+}
+
+.decoration-1 {
+    width: 320px;
+    height: 320px;
+
+    top: -180px;
+    left: -100px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.decoration-2 {
+    width: 420px;
+    height: 420px;
+
+    right: -220px;
+    bottom: -230px;
+
+    border: 1px solid rgba(255,255,255,0.10);
+}
+
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+========================================================= */
+
+.container {
+
+    width: 100%;
+    max-width: 1250px;
+
+    min-height: 700px;
+
+    padding: 55px;
+
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 70px;
+
+    align-items: center;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   LADO ESQUERDO
+========================================================= */
+
+.area-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 500px;
+}
+
+
+.logo-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    width: 100%;
+
+    max-width: 440px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logoinicio {
+
+    width: 390px;
+    max-width: 100%;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    filter: blur(5px);
+
+    animation:
+        fadeEntrada 0.8s ease forwards;
+
+    animation-delay: 0.1s;
+}
+
+
+/* =========================================================
+   TEXTO ABAIXO DA LOGO
+========================================================= */
+
+.welcome-text {
+
+    margin-top: 20px;
+
+    padding-left: 8px;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    filter: blur(5px);
+
+    animation:
+        fadeEntrada 0.8s ease forwards;
+
+    animation-delay: 0.25s;
+}
+
+
+.welcome-text span {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    color: rgba(255,255,255,0.65);
+}
+
+
+.welcome-text p {
+
+    margin-top: 8px;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    color: rgba(255,255,255,0.80);
+}
+
+
+/* =========================================================
+   ÁREA DO MENU
+========================================================= */
+
+.menu-area {
+
+    width: 100%;
+
+    max-width: 620px;
+
+    justify-self: end;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.menu-header {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    filter: blur(5px);
+
+    animation:
+        fadeEntrada 0.8s ease forwards;
+
+    animation-delay: 0.2s;
+}
+
+
+.menu-label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: rgba(255,255,255,0.60);
+}
+
+
+.titulo,
+.menu-header h1 {
+
+    font-size: 30px;
+
+    line-height: 1.15;
+
+    font-weight: 400;
+
+    color: #ffffff;
+}
+
+
+.menu-header h1 strong {
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.online-status {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.10);
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+.status-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #b9e6c2;
+
+    box-shadow:
+        0 0 0 4px rgba(185,230,194,0.10);
+}
+
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid-cards {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card {
+
+    min-height: 125px;
+
+    padding: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,0.95);
+
+    
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(30, 50, 80, 0.12);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    filter: blur(5px);
+
+    animation:
+        fadeEntrada 0.65s ease forwards;
+}
+
+
+/* =========================================================
+   CARD DESTAQUE
+========================================================= */
+
+.card-destaque {
+
+    grid-column: span 2;
+
+    min-height: 145px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.98),
+            rgba(244,248,253,0.98)
+        );
+
+    border-color: rgba(255,255,255,0.9);
+}
+
+
+/* detalhe lateral */
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 5px;
+
+    background: #7185a6;
+
+    border-radius: 16px 0 0 16px;
+
+    transition: width 0.25s ease;
+}
+
+/* =========================================================
+   CORES DA BORDA LATERAL
+========================================================= */
+
+/* Rastreio */
+.card:nth-child(1)::before {
+    background: #1976d2;
+}
+
+/* RankProd */
+.card:nth-child(2)::before {
+    background: #7c3aed;
+}
+
+/* Retornos */
+.card:nth-child(3)::before {
+    background: #f59e0b;
+}
+
+/* Relatórios */
+.card:nth-child(4)::before {
+    background: #0ea5a4;
+}
+
+/* Análises */
+.card:nth-child(5)::before {
+    background: #16a34a;
+}
+
+/* Configurações */
+.card:nth-child(6)::before {
+    background: #64748b;
+}
+
+.card:hover::before {
+    width: 7px;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 16px 35px rgba(25, 45, 75, 0.20);
+
+    border-color: rgba(255,255,255,1);
+}
+
+
+.card:active {
+
+    transform: scale(0.985);
+}
+
+
+/* =========================================================
+   FOCO
+========================================================= */
+
+.card:focus {
+
+    outline: 2px solid rgba(255,255,255,0.8);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   ÍCONE
+========================================================= */
+
+.card-icon {
+
+    width: 48px;
+    height: 48px;
+
+    min-width: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #edf3fa;
+
+    color: #526b8d;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.card:hover .card-icon {
+
+    background: #e3ecf7;
+
+    transform: scale(1.05);
+}
+
+
+.card-icon svg {
+
+    width: 23px;
+    height: 23px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.card-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+
+.card-category {
+
+    margin-bottom: 4px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+
+    color: #8797ac;
+}
+
+
+.card-text strong {
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #26384d;
+
+    line-height: 1.3;
+}
+
+
+.card-text > span:last-child {
+
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    color: #78889d;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   SETA
+========================================================= */
+
+.card-arrow {
+
+    margin-left: auto;
+
+    font-size: 22px;
+
+    font-weight: 300;
+
+    color: #a4b1c0;
+
+    opacity: 0;
+
+    transform: translateX(-5px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.card:hover .card-arrow {
+
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+.grid-cards .card:nth-child(1) {
+    animation-delay: 0.30s;
+}
+
+.grid-cards .card:nth-child(2) {
+    animation-delay: 0.38s;
+}
+
+.grid-cards .card:nth-child(3) {
+    animation-delay: 0.46s;
+}
+
+.grid-cards .card:nth-child(4) {
+    animation-delay: 0.54s;
+}
+
+.grid-cards .card:nth-child(5) {
+    animation-delay: 0.62s;
+}
+
+.grid-cards .card:nth-child(6) {
+    animation-delay: 0.70s;
+}
+
+
+@keyframes fadeEntrada {
+
+    0% {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+        filter: blur(5px);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+        filter: blur(0);
+    }
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+.footer-info {
+
+    margin-top: 20px;
+
+    text-align: right;
+
+    font-size: 10px;
+
+    color: rgba(255,255,255,0.42);
+
+    letter-spacing: 0.5px;
+
+    opacity: 0;
+
+    animation:
+        fadeEntrada 0.8s ease forwards;
+
+    animation-delay: 0.9s;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .container {
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding: 40px 30px;
+
+        min-height: auto;
+    }
+
+    .area-logo {
+
+        min-height: auto;
+
+        justify-content: center;
+    }
+
+    .logo-wrapper {
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .welcome-text {
+
+        padding-left: 0;
+    }
+
+    .menu-area {
+
+        max-width: 650px;
+
+        justify-self: center;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .container {
+
+        padding: 30px 20px;
+    }
+
+    .logoinicio {
+
+        width: 280px;
+    }
+
+    .menu-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .menu-header h1 {
+
+        font-size: 25px;
+    }
+
+    .grid-cards {
+
+        grid-template-columns: 1fr;
+    }
+
+    .card-destaque {
+
+        grid-column: span 1;
+    }
+
+    .card {
+
+        min-height: 105px;
+    }
+
+    .footer-info {
+
+        text-align: center;
+    }
+
+}
+
+/* =========================================================
+   BOTÃO CONFIGURAÇÕES
+========================================================= */
+
+.settings-button {
+
+    position: fixed;
+
+    top: 25px;
+    right: 30px;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    border-radius: 50%;
+
+    background: #c9c5c591;
+
+    color:  #4c5f75;
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+
+    opacity: 0;
+
+    animation:
+        fadeEntrada 0.8s ease forwards;
+
+    animation-delay: 0.35s;
+}
+
+
+/* Ícone */
+
+.settings-button svg {
+
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+}
+
+
+/* Hover */
+
+.settings-button:hover {
+
+    background: rgba(255,255,255,0.18);
+
+    color: #ffffff;
+
+    transform: rotate(45deg);
+
+    box-shadow:
+        0 8px 20px rgba(20,40,70,0.18);
+}
+
+
+/* Clique */
+
+.settings-button:active {
+
+    transform: rotate(45deg) scale(0.94);
+}
+
+
+/* Foco */
+
+.settings-button:focus {
+
+    outline: 2px solid rgba(255,255,255,0.7);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   CARDS SEM PERMISSÃO
+========================================================= */
+
+.card.desativado {
+
+    background: rgba(55, 68, 88, 0.78);
+
+    border-color: rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 5px 15px rgba(15,25,40,0.12);
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    filter: none;
+
+    opacity: 0.72;
+}
+
+
+/* Borda lateral dos bloqueados */
+
+.card.desativado::before {
+
+    background: #46566d !important;
+
+    width: 5px;
+}
+
+
+/* Ícone */
+
+.card.desativado .card-icon {
+
+    background: rgba(255,255,255,0.08);
+
+    color: #9ba7b7;
+}
+
+
+/* Categoria */
+
+.card.desativado .card-category {
+
+    color: #9aa5b4;
+}
+
+
+/* Título */
+
+.card.desativado .card-text strong {
+
+    color: #d1d6dd;
+}
+
+
+/* Descrição */
+
+.card.desativado .card-text > span:last-child {
+
+    color: #9ba5b4;
+}
+
+
+/* =========================================================
+   REMOVE O HOVER DOS BLOQUEADOS
+========================================================= */
+
+.card.desativado:hover {
+
+    transform: none;
+
+    box-shadow:
+        0 5px 15px rgba(15,25,40,0.12);
+
+    border-color: rgba(255,255,255,0.08);
+}
+
+
+.card.desativado:hover::before {
+
+    width: 5px;
+}
+
+
+.card.desativado:hover .card-icon {
+
+    background: rgba(255,255,255,0.08);
+
+    transform: none;
+}
+
+
+/* =========================================================
+   INDICADOR DE BLOQUEIO
+========================================================= */
+
+.card.desativado .card-arrow {
+
+    opacity: 1;
+
+    transform: none;
+
+    font-size: 0;
+
+    color: #9ba7b7;
+}
+
+
+.card.desativado .card-arrow::after {
+
+    content: "🔒";
+
+    font-size: 15px;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   CONFIGURAÇÕES SEM PERMISSÃO
+========================================================= */
+
+.settings-button.desativado {
+
+    background: rgba(40, 50, 65, 0.45);
+
+    color: rgba(255,255,255,0.35);
+
+    cursor: not-allowed;
+
+    box-shadow: none;
+}
+
+
+.settings-button.desativado:hover {
+
+    background: rgba(40,50,65,0.45);
+
+    color: rgba(255,255,255,0.35);
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+/* =========================================================
+   CARDS AGUARDANDO PERMISSÃO
+========================================================= */
+
+.card.aguardando-permissao {
+
+    background: rgba(55, 68, 88, 0.78);
+
+    border-color: rgba(255,255,255,0.08);
+
+    cursor: wait;
+
+    opacity: 0.72;
+
+    box-shadow:
+        0 5px 15px rgba(15,25,40,0.12);
+
+    transform: none;
+
+    pointer-events: none;
+}
+
+
+/* Borda lateral */
+
+.card.aguardando-permissao::before {
+
+    background: #46566d !important;
+
+    width: 5px;
+}
+
+
+/* Ícone */
+
+.card.aguardando-permissao .card-icon {
+
+    background: rgba(255,255,255,0.08);
+
+    color: #9ba7b7;
+
+    transform: none;
+}
+
+
+/* Textos */
+
+.card.aguardando-permissao .card-category {
+
+    color: #9aa5b4;
+}
+
+.card.aguardando-permissao .card-text strong {
+
+    color: #d1d6dd;
+}
+
+.card.aguardando-permissao .card-text > span:last-child {
+
+    color: #9ba5b4;
+}
+
+
+/* Não mostrar seta enquanto verifica */
+
+.card.aguardando-permissao .card-arrow:not(.loading-icon) {
+
+    opacity: 0;
+}
+
+/* =========================================================
+   CARD AGUARDANDO SISTEMA
+========================================================= */
+
+.card.aguardando-permissao .card-status {
+
+    color: #9ba7b7;
+
+    font-style: italic;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+/* =========================================================
+   ÍCONE DE CARREGAMENTO
+========================================================= */
+
+.card-arrow.loading-icon {
+
+    opacity: 1;
+
+    transform: none;
+
+    font-size: 22px;
+
+    color: #aeb9c7;
+
+    animation: girarCarregamento 1s linear infinite;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+@keyframes girarCarregamento {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.card.aguardando-permissao .card-description {
+
+    color: #aeb9c7;
+
+    font-style: italic;
+
+    transition: color 0.2s ease;
+}
+
+.card.aguardando-permissao .card-description {
+
+    color: #aeb9c7;
+
+    font-style: italic;
+
+    animation: pulsarTexto 1.4s ease-in-out infinite;
+}
+
+@keyframes pulsarTexto {
+
+    0% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.55;
+    }
+}
+
+/* =========================================================
+   CARD DESTAQUE — barra no topo em vez de lateral,
+   já que ele ocupa as 2 colunas do grid
+========================================================= */
+
+.card-destaque::before {
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+
+    width: auto;
+    height: 5px;
+
+    border-radius: 16px 16px 0 0;
+}
+
+.card-destaque:hover::before {
+
+    height: 7px;
+    width: auto;
+}
