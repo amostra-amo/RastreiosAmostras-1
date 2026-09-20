@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from backend.auth import router as auth_router
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 import json
 import os
@@ -21,6 +23,7 @@ app.include_router(auth_router)
 # ================= PERMISSÕES =================
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 ARQUIVO_PERMISSOES = os.path.join(BASE_DIR, "permissoes.json")
 
 
@@ -41,10 +44,7 @@ def get_permissoes():
 @app.post("/permissoes")
 def salvar_permissoes(data: dict):
     try:
-        # 🔥 adiciona versão automática
         data["versao"] = int(time.time())
-
-        # 🔥 garante que a pasta existe
         os.makedirs(BASE_DIR, exist_ok=True)
 
         with open(ARQUIVO_PERMISSOES, "w", encoding="utf-8") as f:
@@ -57,8 +57,6 @@ def salvar_permissoes(data: dict):
         return {"ok": False}
 
 
-# ================= EXCLUIR USUÁRIO =================
-
 @app.delete("/permissoes/{usuario}")
 def excluir_usuario(usuario: str):
     try:
@@ -70,14 +68,11 @@ def excluir_usuario(usuario: str):
 
         user = usuario.strip().lower()
 
-        # 🔒 proteção opcional (evita apagar admin crítico)
         if user == "v.santos":
             return {"ok": False, "erro": "Usuário protegido"}
 
         if user in data.get("usuarios", {}):
             del data["usuarios"][user]
-
-            # 🔥 atualiza versão também na exclusão
             data["versao"] = int(time.time())
 
             with open(ARQUIVO_PERMISSOES, "w", encoding="utf-8") as f:
@@ -90,3 +85,19 @@ def excluir_usuario(usuario: str):
     except Exception as e:
         print("Erro ao excluir usuário:", e)
         return {"ok": False}
+
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+
+
+# ================= FRONTEND ESTÁTICO (Railway) =================
+# Rotas da API ficam acima; arquivos HTML/CSS/JS/imagens abaixo.
+
+@app.get("/")
+def serve_index():
+    return FileResponse(os.path.join(ROOT_DIR, "index.html"))
+
+
+app.mount("/", StaticFiles(directory=ROOT_DIR, html=True), name="frontend")

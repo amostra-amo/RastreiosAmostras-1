@@ -1,4 +1,4 @@
-// =====================================================
+﻿// =====================================================
 // CONFIGURAÇÃO CENTRAL DO SISTEMA
 // =====================================================
 
@@ -14,7 +14,7 @@ const CONFIG = {
     API: {
 
         // Endereço do computador onde o FastAPI está rodando
-        BASE_URL: "http://10.70.4.212:8000",
+        BASE_URL: window.location.origin,
 
         // Endpoints disponíveis
         ENDPOINTS: {
