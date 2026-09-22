@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
 
             const resposta = await fetch(
-                "http://127.0.0.1:8000/login",
+                "https://rastreiosamostras-production.up.railway.app/login",
                 {
                     method: "POST",
 
