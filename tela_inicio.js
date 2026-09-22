@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const API_URL = "http://127.0.0.1:8000/permissoes";
+const API_URL = "https://rastreiosamostras-production.up.railway.app/permissoes";
 
 // cache
 let cachePermissoes = null;
